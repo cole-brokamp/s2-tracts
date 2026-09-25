@@ -33,7 +33,7 @@ The command returns one JSON object per ID:
 Pass multiple IDs as arguments, or pipe one ID per line on standard input:
 
 ```sh
-printf '%s\n' 9936721416563002943 | s2-tracts --vintage 2020 > tracts.jsonl
+printf '%s\n' 9936721416563002943 9936721416563002945 | s2-tracts --vintage 2020 > tracts.jsonl
 ```
 
 Results stay in input order, including duplicate IDs.
