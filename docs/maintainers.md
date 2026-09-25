@@ -1,9 +1,10 @@
 # Maintainer documentation
 
-## Lookup and bundle contract
+## Lookup and data contract
 
-The CLI accepts unsigned level-30 S2 cell IDs and always queries both the fixed 2010 and 2020 decennial tract vintages.
-For each vintage independently, a point must be strictly inside exactly one distinct GEOID.
+The CLI accepts unsigned level-30 S2 cell IDs and queries one annual TIGER/Line tract vintage at a time.
+The default is 2020; `--vintage YEAR` selects 2010 through 2025.
+For each point, a match must be strictly inside exactly one distinct GEOID.
 Outside points, exterior or hole boundaries, and overlaps between different tracts yield `null`.
 A boundary wins even if another tract contains the point.
 Multiple components of one GEOID count once.
@@ -11,51 +12,52 @@ There is no nearest assignment or distance tolerance.
 
 S2 centers are compared directly with source longitude and latitude using planar edges, without a datum transformation.
 Antimeridian components are unwrapped so both sides can be queried.
-The FlatGeobuf spatial indexes remain on disk; the reader loads candidate features instead of a national index.
-Opening validates the FlatGeobuf schema and bundle title.
-Lookup does not hash all national files or scan unvisited feature bytes.
+The FlatGeobuf spatial index remains on disk; the reader loads candidate features instead of a national index.
+Opening validates the FlatGeobuf schema, selected vintage, and preparation revision.
+Lookup does not hash national files or scan unvisited feature bytes.
 
-The release data assets are `tracts_2010.fgb`, `tracts_2020.fgb`, and `provenance.json`.
-The first two are required by the CLI.
-The bundle covers all 50 states, DC, Puerto Rico, American Samoa, Guam, the Northern Mariana Islands, and the US Virgin Islands, including water tracts.
-2010 tracts come from the [TIGER2010 state tract archives](https://www2.census.gov/geo/tiger/TIGER2010/TRACT/2010/) (`GEOID10`).
-2020 tracts come from the [TIGER2020 state tract archives](https://www2.census.gov/geo/tiger/TIGER2020/TRACT/) (`GEOID`).
-`scripts/sources.lock.json` lists the 112 exact source URLs, sizes, and SHA-256 hashes.
+The release data assets for a year are `tracts_YEAR.fgb.zst`, `tracts_YEAR.fgb.zst.sha256`, `tracts_YEAR.fgb.sha256`, and `provenance_YEAR.json`.
+The CLI pins the sizes and SHA-256 hashes of both the compressed download and expanded FlatGeobuf in `scripts/assets.lock.json` at build time.
+The previously prepared 2010 and 2020 files remain readable through their original header title.
+Each vintage covers all 50 states, DC, Puerto Rico, American Samoa, Guam, the Northern Mariana Islands, and the US Virgin Islands, including water tracts.
+The 2010 source uses `GEOID10`; other annual sources use `GEOID`.
+Source records are frozen in `scripts/sources.lock.json` for 2010 and 2020 or in `scripts/sources-YEAR.lock.json` for newer builds.
 `provenance.json` records prepared file hashes, counts, and source details.
 
-## Rebuild the tract bundle
+## Prepare an annual vintage
 
-Preparation needs R packages `sf`, `jsonlite`, and `digest`.
-The `sf` installation needs GDAL with GEOS and the FlatGeobuf driver.
+Preparation needs R packages `sf`, `jsonlite`, and `digest`, plus GDAL with GEOS and the FlatGeobuf driver.
 These are maintainer dependencies, not CLI runtime dependencies.
 
+For 2010 and 2020, the source lock already exists.
+For another year, first create and review its frozen source lock:
+
 ```sh
-Rscript scripts/download.R
-Rscript scripts/prepare.R
+Rscript scripts/lock-year.R --vintage 2019
+Rscript scripts/download.R --vintage 2019
+Rscript scripts/prepare.R --vintage 2019
 ```
 
-The downloader verifies cached source archives in `work/sources`.
-Preparation writes to `dist/census-tracts-2010-2020-r1-r` and refuses to overwrite an existing output directory.
-The FlatGeobuf files contain 2D polygon components with one string `GEOID` column and built-in spatial indexes.
+Preparation refuses to overwrite an existing output directory.
+It writes `dist/census-tracts-YEAR-r1/tracts_YEAR.fgb` and `provenance.json`.
+The FlatGeobuf contains 2D polygon components with one string `GEOID` column and a spatial index.
 Preparation preserves source coordinates except integer-360 longitude unwrapping and hole alignment.
 It performs no geometry repair, simplification, clipping, or rounding.
 
-Do not change the data files without updating the fixed SHA-256 and byte counts in `src/main.rs` and releasing a new version.
-A developer can point `data install` at a local or mirrored versioned asset URL by setting `S2_TRACTS_RELEASE_BASE_URL`.
+To prepare all annual years, run `sh scripts/build-all-years.sh`.
+Compare provenance, tract counts, and spot checks against the official year's source before upload, especially where source schemas or coverage differ.
+Run `python3 scripts/freeze-assets.py` after all years are prepared to compress and pin the exact release assets before building the binaries.
 
 ## Release
 
-This checkout is intended for `cole-brokamp/s2-tracts`; the installer becomes usable only after the source and release assets are published.
+1. Create and push a version tag matching `Cargo.toml`, such as `v0.2.0`.
+2. Run the **Build release binaries** workflow with that tag; it creates a draft release with four platform binaries and their SHA-256 files.
+3. Upload every prepared year to that draft release with `sh scripts/release-data.sh YEAR v0.2.0`.
+   The script includes the already prepared legacy 2010 and 2020 files if per-year output does not exist.
+4. Verify the binaries, sidecars, and data assets, then publish the draft release and check the README install command on a clean machine.
 
-1. Create and push a tag matching `Cargo.toml`, such as `v0.1.0`.
-2. Run the **Build release binaries** GitHub Actions workflow with that tag to create a draft release and upload four platform binaries and SHA-256 files.
-3. Upload `tracts_2010.fgb`, `tracts_2020.fgb`, and `provenance.json` from `dist/census-tracts-2010-2020-r1-r` to the same draft release:
-
-   ```sh
-   gh release upload v0.1.0 dist/census-tracts-2010-2020-r1-r/* --repo cole-brokamp/s2-tracts
-   ```
-
-4. Verify the binary, checksum, and data assets, publish the draft release, and confirm the README install command on a clean machine.
-
-The installer fetches the latest published binary, verifies its SHA-256, and runs `data install` before placing the binary at `~/.local/bin/s2-tracts`.
-`data install` downloads the two FlatGeobuf files from the versioned GitHub release matching the binary version, verifies their fixed sizes and SHA-256 hashes, and atomically places them in a persistent user data directory.
+The installer fetches and verifies the latest published binary without downloading data.
+It offers to preinstall the default vintage when a terminal is attached.
+On first lookup, the CLI downloads only the selected vintage from the release matching its binary version, verifies both hashes against its embedded manifest and the FlatGeobuf schema, and atomically places the expanded file in the user data directory.
+For 2010 and 2020, it first checks the old `s2-tracts-2010-2020-r1` installation and hard-links a hash-matching file into the new per-vintage directory when possible.
+The environment variable `S2_TRACTS_RELEASE_BASE_URL` can point data installation to a local or mirrored versioned asset URL for development.

@@ -1,0 +1,450 @@
+[
+  {
+    "year": 2012,
+    "state": "01",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_01_tract.zip",
+    "filename": "tl_2012_01_tract.zip",
+    "bytes": 10035085,
+    "sha256": "063366fe1cf8aa6ce5226ca0138c3f8d06d25bef51e40ef9a4545a5e9bcd3b38"
+  },
+  {
+    "year": 2012,
+    "state": "02",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_02_tract.zip",
+    "filename": "tl_2012_02_tract.zip",
+    "bytes": 3054457,
+    "sha256": "8054f7e40fea6d9374b03d3a4272b35f482cf29c89330e6132e23aac05968095"
+  },
+  {
+    "year": 2012,
+    "state": "04",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_04_tract.zip",
+    "filename": "tl_2012_04_tract.zip",
+    "bytes": 7452640,
+    "sha256": "bbc56fbcb730fda5c803c531e31c57918e5fe7465e5e467e4b6e7af8ee4c3bbb"
+  },
+  {
+    "year": 2012,
+    "state": "05",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_05_tract.zip",
+    "filename": "tl_2012_05_tract.zip",
+    "bytes": 8421655,
+    "sha256": "f474b5c3cafe5d72a0f917f5f4126560681181c6918766ac74a10c6ccfeba3f3"
+  },
+  {
+    "year": 2012,
+    "state": "06",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_06_tract.zip",
+    "filename": "tl_2012_06_tract.zip",
+    "bytes": 28916339,
+    "sha256": "7d0d96edd6788ce3637ecb7d23f365fa575eede9407d031840b1d07c5aa3a69d"
+  },
+  {
+    "year": 2012,
+    "state": "08",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_08_tract.zip",
+    "filename": "tl_2012_08_tract.zip",
+    "bytes": 7267576,
+    "sha256": "b29c454d03395ffc879856037dc3c52edb1faf6c120fdbc2dc940847588f989d"
+  },
+  {
+    "year": 2012,
+    "state": "09",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_09_tract.zip",
+    "filename": "tl_2012_09_tract.zip",
+    "bytes": 2398180,
+    "sha256": "f08bc76d5d8f529520ce40f265ed0e62fd5fbdfba695b329a912b883f683acd8"
+  },
+  {
+    "year": 2012,
+    "state": "10",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_10_tract.zip",
+    "filename": "tl_2012_10_tract.zip",
+    "bytes": 952848,
+    "sha256": "f76168efb53d195538d5907bb2a390d6dba734977958c3900d1246eb3095cc58"
+  },
+  {
+    "year": 2012,
+    "state": "11",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_11_tract.zip",
+    "filename": "tl_2012_11_tract.zip",
+    "bytes": 373762,
+    "sha256": "2ee0175a26ef804da2545378f43cdbd1b046bab15527b8d1945e16b5c4f17bd5"
+  },
+  {
+    "year": 2012,
+    "state": "12",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_12_tract.zip",
+    "filename": "tl_2012_12_tract.zip",
+    "bytes": 11532931,
+    "sha256": "c34b3e0b6e9b09c6d20316e4a92732ac36360f4cd04346364054152d299432b7"
+  },
+  {
+    "year": 2012,
+    "state": "13",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_13_tract.zip",
+    "filename": "tl_2012_13_tract.zip",
+    "bytes": 12660114,
+    "sha256": "94ee8fb21c23e36a8d8477c8e40d839e4e0a613d6fd9fd1021281523eaee0589"
+  },
+  {
+    "year": 2012,
+    "state": "15",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_15_tract.zip",
+    "filename": "tl_2012_15_tract.zip",
+    "bytes": 1447484,
+    "sha256": "3d4acc0d4e0bd5484481f69f18a057b6f7cf42d16ac5a46893eaaf47874d0ca2"
+  },
+  {
+    "year": 2012,
+    "state": "16",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_16_tract.zip",
+    "filename": "tl_2012_16_tract.zip",
+    "bytes": 4032490,
+    "sha256": "a5f9ffb5c848358028c91f77fb83170935ea9dba5cfced631fe47bee2aedb2f0"
+  },
+  {
+    "year": 2012,
+    "state": "17",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_17_tract.zip",
+    "filename": "tl_2012_17_tract.zip",
+    "bytes": 9201855,
+    "sha256": "0926b034bf856ab77449e267e2501fbfb50311c787370268b52ca5762d957810"
+  },
+  {
+    "year": 2012,
+    "state": "18",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_18_tract.zip",
+    "filename": "tl_2012_18_tract.zip",
+    "bytes": 5617101,
+    "sha256": "e3f26edb3ac347c41368debec9f97fd33b458d8c86385658960a55284cc690a7"
+  },
+  {
+    "year": 2012,
+    "state": "19",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_19_tract.zip",
+    "filename": "tl_2012_19_tract.zip",
+    "bytes": 3725775,
+    "sha256": "4847e4331f99e09decded45c22fb988d3aa8d1c7d69c3f25943ee9bf6e42a2ae"
+  },
+  {
+    "year": 2012,
+    "state": "20",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_20_tract.zip",
+    "filename": "tl_2012_20_tract.zip",
+    "bytes": 2794823,
+    "sha256": "c38f67c76650983ae67a9af24b6472323c2dd1abf44613f7401a8fdfbc3e0fd8"
+  },
+  {
+    "year": 2012,
+    "state": "21",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_21_tract.zip",
+    "filename": "tl_2012_21_tract.zip",
+    "bytes": 11287953,
+    "sha256": "91cf483d2092004d1826788c8a9f0e3301c06f71cf0973b1be9cd5ab2f9e8615"
+  },
+  {
+    "year": 2012,
+    "state": "22",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_22_tract.zip",
+    "filename": "tl_2012_22_tract.zip",
+    "bytes": 7081261,
+    "sha256": "c99b2077a095127a325ef1f3e35924be1e54be64463504d0cb1ee05836e8f923"
+  },
+  {
+    "year": 2012,
+    "state": "23",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_23_tract.zip",
+    "filename": "tl_2012_23_tract.zip",
+    "bytes": 2886362,
+    "sha256": "c639459974f3adb5f9d412391822836d81b81b4fab51d403114e68fc6fd71ed9"
+  },
+  {
+    "year": 2012,
+    "state": "24",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_24_tract.zip",
+    "filename": "tl_2012_24_tract.zip",
+    "bytes": 5393132,
+    "sha256": "bc8e78eb69df4b1441b9ba9504bbfce268db99336059d0736028e219437b274d"
+  },
+  {
+    "year": 2012,
+    "state": "25",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_25_tract.zip",
+    "filename": "tl_2012_25_tract.zip",
+    "bytes": 3706190,
+    "sha256": "2e80fa363d050ebd561b6cefa74c4ccf02ace18f3f34f4ad115ff6f0b6631c3a"
+  },
+  {
+    "year": 2012,
+    "state": "26",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_26_tract.zip",
+    "filename": "tl_2012_26_tract.zip",
+    "bytes": 5005183,
+    "sha256": "9dc9f9e4388b142dff3c6037036b54a002d4375d7efd06d2e6148b9d09ad9dce"
+  },
+  {
+    "year": 2012,
+    "state": "27",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_27_tract.zip",
+    "filename": "tl_2012_27_tract.zip",
+    "bytes": 6477957,
+    "sha256": "26b75d9fb3c87812f9a908115f7d27abf8b49ffafd280aa876e047e05f663e68"
+  },
+  {
+    "year": 2012,
+    "state": "28",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_28_tract.zip",
+    "filename": "tl_2012_28_tract.zip",
+    "bytes": 7418487,
+    "sha256": "0138ee132ef25c74a76c5d5d87691296bb3e6ec48b62e326bbe3620cc0c75381"
+  },
+  {
+    "year": 2012,
+    "state": "29",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_29_tract.zip",
+    "filename": "tl_2012_29_tract.zip",
+    "bytes": 9119694,
+    "sha256": "133a8c41a31e7c9b40252b01dceee451c9ac7f7a692889c9cee4b9d8e194c42f"
+  },
+  {
+    "year": 2012,
+    "state": "30",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_30_tract.zip",
+    "filename": "tl_2012_30_tract.zip",
+    "bytes": 6181186,
+    "sha256": "212453a79a22e60285ddd57c031e0f2a931efa5863492b8bc72687c90829c470"
+  },
+  {
+    "year": 2012,
+    "state": "31",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_31_tract.zip",
+    "filename": "tl_2012_31_tract.zip",
+    "bytes": 2072550,
+    "sha256": "80786dfb700101806195568b876234c443849a379a89c13f06d375b12593b71a"
+  },
+  {
+    "year": 2012,
+    "state": "32",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_32_tract.zip",
+    "filename": "tl_2012_32_tract.zip",
+    "bytes": 2994472,
+    "sha256": "a114b2e8879fda8782e1cc5f5d9bb14917bdee22290ea0edbe6fa9d18fb816ac"
+  },
+  {
+    "year": 2012,
+    "state": "33",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_33_tract.zip",
+    "filename": "tl_2012_33_tract.zip",
+    "bytes": 784069,
+    "sha256": "67ef78d0e1bd10ae714d9a9c7029c9f9f8af9ff0fcd7c84dcc84233788f2ee6f"
+  },
+  {
+    "year": 2012,
+    "state": "34",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_34_tract.zip",
+    "filename": "tl_2012_34_tract.zip",
+    "bytes": 4521201,
+    "sha256": "3291da6cbf45514196367e8ffae13a7ba55fb62b1ef9b5eb376d4029b2f74613"
+  },
+  {
+    "year": 2012,
+    "state": "35",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_35_tract.zip",
+    "filename": "tl_2012_35_tract.zip",
+    "bytes": 4115714,
+    "sha256": "101562c67ac8ca1d4834bd3a8e5918ee1b4b36d9c0e4fbae8b1136915d58bc72"
+  },
+  {
+    "year": 2012,
+    "state": "36",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_36_tract.zip",
+    "filename": "tl_2012_36_tract.zip",
+    "bytes": 7102394,
+    "sha256": "be1eeb62a935bc5713ac986182a8489b1dedbb51935de929baf141599a54df22"
+  },
+  {
+    "year": 2012,
+    "state": "37",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_37_tract.zip",
+    "filename": "tl_2012_37_tract.zip",
+    "bytes": 14997063,
+    "sha256": "1fc4f6b66da5b0ebfec0a9048b1ea11be5864f5add2e4ea195400e4409893427"
+  },
+  {
+    "year": 2012,
+    "state": "38",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_38_tract.zip",
+    "filename": "tl_2012_38_tract.zip",
+    "bytes": 1693088,
+    "sha256": "27423fd7aff1e7ebbfa336bcee6a4de78bd3696978bc918000622b974e24b09a"
+  },
+  {
+    "year": 2012,
+    "state": "39",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_39_tract.zip",
+    "filename": "tl_2012_39_tract.zip",
+    "bytes": 8085659,
+    "sha256": "b0e40bbf95261f90998752f70bd466f5fd4cd3a2d80f4fc970d206e09f2019dd"
+  },
+  {
+    "year": 2012,
+    "state": "40",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_40_tract.zip",
+    "filename": "tl_2012_40_tract.zip",
+    "bytes": 6385278,
+    "sha256": "abc167310099f3ff3aef5a0eb0b8c1c8d3d411c8d766c1e996b127ebece7d536"
+  },
+  {
+    "year": 2012,
+    "state": "41",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_41_tract.zip",
+    "filename": "tl_2012_41_tract.zip",
+    "bytes": 9368027,
+    "sha256": "c11f80703a14e67fee23f47c1f22e5f889a92c7b9ee166aa60f8ffe295bc9499"
+  },
+  {
+    "year": 2012,
+    "state": "42",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_42_tract.zip",
+    "filename": "tl_2012_42_tract.zip",
+    "bytes": 11430559,
+    "sha256": "e875edf4501b1f4a1e33f794d26d37905e20fd27f1220d9f22196e62a0bed2f9"
+  },
+  {
+    "year": 2012,
+    "state": "44",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_44_tract.zip",
+    "filename": "tl_2012_44_tract.zip",
+    "bytes": 726008,
+    "sha256": "d62b19eb03621c86f67b72773ca56b33946d3b2715a4462d46fb58e112017f98"
+  },
+  {
+    "year": 2012,
+    "state": "45",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_45_tract.zip",
+    "filename": "tl_2012_45_tract.zip",
+    "bytes": 8236972,
+    "sha256": "2536ba980f2afb9c0a6ddca1504a72ea9f3b79fe6276c410807ba2d9d55db2c7"
+  },
+  {
+    "year": 2012,
+    "state": "46",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_46_tract.zip",
+    "filename": "tl_2012_46_tract.zip",
+    "bytes": 2838140,
+    "sha256": "427f2f74b4861452a83ff00873ccdcc1cd77055cdc66de61df467846f92c98f6"
+  },
+  {
+    "year": 2012,
+    "state": "47",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_47_tract.zip",
+    "filename": "tl_2012_47_tract.zip",
+    "bytes": 13641777,
+    "sha256": "909f9b306447e542c986d13476100e3b6330998ae1f252f00f8e4375ff2facca"
+  },
+  {
+    "year": 2012,
+    "state": "48",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_48_tract.zip",
+    "filename": "tl_2012_48_tract.zip",
+    "bytes": 27948966,
+    "sha256": "2bf37168722a913499d258d13ba718e314134cf869731cc514c57655ac6c1eef"
+  },
+  {
+    "year": 2012,
+    "state": "49",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_49_tract.zip",
+    "filename": "tl_2012_49_tract.zip",
+    "bytes": 4775662,
+    "sha256": "61af9182400eac65f1e222c53ea45712d6995118bfec541d2614faf7437bbf7a"
+  },
+  {
+    "year": 2012,
+    "state": "50",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_50_tract.zip",
+    "filename": "tl_2012_50_tract.zip",
+    "bytes": 619826,
+    "sha256": "24108ad78008b7b9f716d2eac57ba62905b5f1027ba75d95d3b345f454b72b48"
+  },
+  {
+    "year": 2012,
+    "state": "51",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_51_tract.zip",
+    "filename": "tl_2012_51_tract.zip",
+    "bytes": 12882781,
+    "sha256": "c08de580c73565642f0af925558e3edf7b064c9a4d1cb41b5e7cb1cb4a27a6ff"
+  },
+  {
+    "year": 2012,
+    "state": "53",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_53_tract.zip",
+    "filename": "tl_2012_53_tract.zip",
+    "bytes": 8524668,
+    "sha256": "ebc8c47f802ed8f8c35ac113543eb89b6563cf8253fd82375076e72e96cf3c42"
+  },
+  {
+    "year": 2012,
+    "state": "54",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_54_tract.zip",
+    "filename": "tl_2012_54_tract.zip",
+    "bytes": 7319586,
+    "sha256": "7b0c7d3e688242561d443587859339f884b6f0c93271bd89ab81a95c5b2ee7d8"
+  },
+  {
+    "year": 2012,
+    "state": "55",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_55_tract.zip",
+    "filename": "tl_2012_55_tract.zip",
+    "bytes": 6848756,
+    "sha256": "ab717194b141c146791347c75be66ed676dc974e6c8820a904d617739b25fc55"
+  },
+  {
+    "year": 2012,
+    "state": "56",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_56_tract.zip",
+    "filename": "tl_2012_56_tract.zip",
+    "bytes": 2181268,
+    "sha256": "2be9c516ae2d23a93de206e1653cace9c89da2adf6232ccb112e7a0cb7c43fbd"
+  },
+  {
+    "year": 2012,
+    "state": "60",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_60_tract.zip",
+    "filename": "tl_2012_60_tract.zip",
+    "bytes": 34157,
+    "sha256": "242cd7c17a44e7deaf89e81e86e56aee9c5d24c3525abf7448595e1004591bf5"
+  },
+  {
+    "year": 2012,
+    "state": "66",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_66_tract.zip",
+    "filename": "tl_2012_66_tract.zip",
+    "bytes": 534053,
+    "sha256": "145f4b45f18857115e4438d6d1da8b1ad13d078b2d19e9c1353c8b836fa8fe75"
+  },
+  {
+    "year": 2012,
+    "state": "69",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_69_tract.zip",
+    "filename": "tl_2012_69_tract.zip",
+    "bytes": 368848,
+    "sha256": "87b74b70f2b26c4be0f4309284f8114d749de137553b944f34804dd05ea435a1"
+  },
+  {
+    "year": 2012,
+    "state": "72",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_72_tract.zip",
+    "filename": "tl_2012_72_tract.zip",
+    "bytes": 3176778,
+    "sha256": "a86c2122dd1dd95101fccdbcc7448113773f09ca26b80bcee33d2ead34b02496"
+  },
+  {
+    "year": 2012,
+    "state": "78",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2012/TRACT/tl_2012_78_tract.zip",
+    "filename": "tl_2012_78_tract.zip",
+    "bytes": 384182,
+    "sha256": "45261d67e6a7dc603029d7cd6aae80c95e2ed96bc0f92101925b871c013111d8"
+  }
+]

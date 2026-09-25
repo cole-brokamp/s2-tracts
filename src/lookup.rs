@@ -1,4 +1,4 @@
-//! Offline lookup of the fixed 2010 and 2020 decennial Census tracts.
+//! Offline lookup of one annual TIGER/Line Census tract vintage.
 //!
 //! Only level-30 S2 cell IDs are accepted. Their centers are compared directly
 //! with longitude/latitude coordinates using planar, strict containment.
@@ -13,7 +13,7 @@ use std::fs::File;
 use std::io::{BufReader, Read, Seek};
 use std::path::{Path, PathBuf};
 
-const BUNDLE_TITLE: &str = "census-tracts-2010-2020-r1";
+pub const DATA_REVISION: &str = "r1";
 
 /// An input or dataset failure. Input errors identify the original batch index.
 #[derive(Debug, thiserror::Error)]
@@ -24,42 +24,38 @@ pub enum LookupError {
     Dataset { path: PathBuf, message: String },
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct TractIds {
-    pub tract_2010: Option<String>,
-    pub tract_2020: Option<String>,
+/// A reusable buffered reader; the national spatial index stays on disk.
+pub struct TractLookup {
+    tracts: Dataset,
 }
 
-/// Two reusable buffered readers; the national spatial indexes stay on disk.
-pub struct TractLookup {
-    tracts_2010: Dataset,
-    tracts_2020: Dataset,
+pub fn validate_ids(cell_ids: &[u64]) -> Result<(), LookupError> {
+    for (index, &value) in cell_ids.iter().enumerate() {
+        let id = CellID(value);
+        if !id.is_valid() || !id.is_leaf() {
+            return Err(LookupError::InvalidCellId { index, value });
+        }
+    }
+    Ok(())
 }
 
 impl TractLookup {
-    /// Open the extracted, prepared r1 bundle. Header/schema checks happen here;
+    /// Open one prepared vintage. Header/schema checks happen here;
     /// queried features are checked while reading. No checksum scans or downloads.
-    pub fn open(bundle_dir: impl AsRef<Path>) -> Result<Self, LookupError> {
+    pub fn open(data_dir: impl AsRef<Path>, vintage: u16) -> Result<Self, LookupError> {
         Ok(Self {
-            tracts_2010: Dataset::open(bundle_dir.as_ref(), 2010)?,
-            tracts_2020: Dataset::open(bundle_dir.as_ref(), 2020)?,
+            tracts: Dataset::open(data_dir.as_ref(), vintage)?,
         })
     }
 
-    /// Validate the whole batch, then query both vintages for each unique center.
+    /// Validate the whole batch, then query the vintage for each unique center.
     /// Boundaries, ambiguous containment, and outside points all return `None`.
-    pub fn lookup(&mut self, cell_ids: &[u64]) -> Result<Vec<TractIds>, LookupError> {
-        for (index, &value) in cell_ids.iter().enumerate() {
-            let id = CellID(value);
-            if !id.is_valid() || !id.is_leaf() {
-                return Err(LookupError::InvalidCellId { index, value });
-            }
-        }
+    pub fn lookup(&mut self, cell_ids: &[u64]) -> Result<Vec<Option<String>>, LookupError> {
+        validate_ids(cell_ids)?;
         if cell_ids.is_empty() {
             return Ok(Vec::new());
         }
-        self.tracts_2010.check_length()?;
-        self.tracts_2020.check_length()?;
+        self.tracts.check_length()?;
         let mut unique = HashMap::new();
         for &id in cell_ids {
             if let std::collections::hash_map::Entry::Vacant(entry) = unique.entry(id) {
@@ -68,10 +64,7 @@ impl TractLookup {
                     x: center.lng.deg(),
                     y: center.lat.deg(),
                 };
-                entry.insert(TractIds {
-                    tract_2010: self.tracts_2010.lookup(point)?,
-                    tract_2020: self.tracts_2020.lookup(point)?,
-                });
+                entry.insert(self.tracts.lookup(point)?);
             }
         }
         Ok(cell_ids.iter().map(|id| unique[id].clone()).collect())
@@ -101,8 +94,11 @@ impl Dataset {
             let mut reader = BufReader::new(file);
             let fgb = FgbReader::open(&mut reader)?;
             let h = fgb.header();
+            let current_title = format!("census-tracts-{year}-{DATA_REVISION}");
+            let legacy_title = "census-tracts-2010-2020-r1";
             if h.name() != Some(format!("tracts_{year}").as_str())
-                || h.title() != Some(BUNDLE_TITLE)
+                || (h.title() != Some(current_title.as_str())
+                    && !([2010, 2020].contains(&year) && h.title() == Some(legacy_title)))
                 || h.geometry_type() != GeometryType::Polygon
                 || h.has_z() || h.has_m() || h.has_t() || h.has_tm()
                 // flatgeobuf 6.0.1's seekable reader assumes node size 16.

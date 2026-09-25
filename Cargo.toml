@@ -1,8 +1,8 @@
 [package]
 name = "s2-tracts"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
-description = "Offline S2 lookup of fixed 2010 and 2020 decennial Census tracts"
+description = "S2 lookup of annual TIGER/Line Census tract vintages"
 license = "MIT"
 repository = "https://github.com/cole-brokamp/s2-tracts"
 exclude = ["/work", "/dist"]
@@ -17,6 +17,7 @@ flatgeobuf = { version = "6.0.1", default-features = false }
 geo = { version = "0.32", default-features = false }
 thiserror = "2"
 serde_json = "1"
+zstd = "0.13.3"
 
 [dev-dependencies]
 geozero = { version = "0.15.1", default-features = false, features = ["with-geo"] }

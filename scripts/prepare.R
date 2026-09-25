@@ -2,9 +2,12 @@
 # Prepare indexed polygon components without transforming or repairing geometry.
 source(file.path(dirname(sub("^--file=", "", grep("^--file=", commandArgs(), value = TRUE)[[1]])), "common.R"))
 args <- options_from_args(list(
+  vintage = "2020",
   sources = file.path(project_root, "work/sources"),
-  output = file.path(project_root, "dist", paste0(bundle_title, "-r"))
+  output = ""
 ))
+vintage <- check_vintage(args$vintage)
+if (!nzchar(args$output)) args$output <- file.path(project_root, "dist", bundle_title(vintage))
 
 unwrap_ring <- function(ring) {
   require_ok(is.matrix(ring) && ncol(ring) == 2L && nrow(ring) >= 4L &&
@@ -83,7 +86,7 @@ prepare_year <- function(year, records, staging) {
   name <- paste0("tracts_", year)
   path <- file.path(staging, paste0(name, ".fgb"))
   sf::st_write(data, path, layer = name, driver = "FlatGeobuf", quiet = TRUE,
-               layer_options = c("SPATIAL_INDEX=YES", paste0("TITLE=", bundle_title)))
+               layer_options = c("SPATIAL_INDEX=YES", paste0("TITLE=", bundle_title(year))))
   list(year = year, file = basename(path), tracts = length(source_ids),
        components = nrow(data), bytes = file.info(path)$size, sha256 = sha256(path),
        sources = source_info)
@@ -92,15 +95,15 @@ prepare_year <- function(year, records, staging) {
 require_ok(!file.exists(args$output), paste("Refusing to overwrite:", args$output))
 staging <- paste0(args$output, ".building")
 require_ok(!file.exists(staging), paste("Inspect existing staging directory before retrying:", staging))
-records <- source_lock()
+records <- source_lock(vintage)
 for (i in seq_len(nrow(records))) {
   verify_source(file.path(args$sources, records$filename[[i]]), records[i, ])
 }
 require_ok(dir.create(staging, recursive = TRUE), paste("Cannot create:", staging))
 # Failures leave the .building directory for inspection; only complete results move into place.
-years <- lapply(c(2010, 2020), prepare_year, records = records, staging = staging)
+years <- list(prepare_year(vintage, records = records, staging = staging))
 provenance <- list(
-  bundle = bundle_title, years = years,
+  bundle = bundle_title(vintage), years = years,
   preparation = list(R = R.version.string, sf = as.character(utils::packageVersion("sf")),
                      libraries = as.list(sf::sf_extSoftVersion())),
   coordinate_policy = paste("Source longitude/latitude without datum transformation;",

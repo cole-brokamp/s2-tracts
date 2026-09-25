@@ -34,7 +34,6 @@ if [ "$actual" != "$expected" ]; then
   exit 1
 fi
 chmod 755 "$tmp_dir/$asset"
-"$tmp_dir/$asset" data install
 mkdir -p "$bin_dir"
 mv "$tmp_dir/$asset" "$bin_dir/s2-tracts"
 printf 'Installed %s\n' "$bin_dir/s2-tracts"
@@ -42,3 +41,12 @@ case ":$PATH:" in
   *":$bin_dir:"*) ;;
   *) printf 'Add %s to your PATH to run s2-tracts directly.\n' "$bin_dir" ;;
 esac
+printf 'Data downloads on first lookup. To prefetch a year, run: %s data install --vintage 2020\n' "$bin_dir/s2-tracts"
+if [ -r /dev/tty ] && [ -w /dev/tty ]; then
+  printf 'Install the default 2020 tract data now? [y/N] ' > /dev/tty
+  if IFS= read -r answer < /dev/tty; then
+    case "$answer" in
+      y|Y|yes|YES) "$bin_dir/s2-tracts" data install --vintage 2020 ;;
+    esac
+  fi
+fi

@@ -1,55 +1,63 @@
 # s2-tracts
 
-Look up the 2010 and 2020 US Census tract GEOIDs for unsigned level-30 S2 cell IDs from your terminal.
+Look up a US Census tract GEOID for an unsigned level-30 S2 cell ID using a selected annual TIGER/Line boundary vintage.
 
 ## Install
 
-On macOS or Linux, paste this command into a terminal:
+On macOS or Linux:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/cole-brokamp/s2-tracts/main/install.sh | sh
 ```
 
-The installer downloads the CLI and tract data (about 1.3 GB).
-It places the command at `~/.local/bin/s2-tracts` and prints a PATH instruction if needed.
-Once installed, lookups work offline.
-No R installation is needed.
+The installer places the CLI at `~/.local/bin/s2-tracts` and does not require tract data to be downloaded.
+When run in a terminal, it offers to preinstall the default 2020 vintage.
+Choose no to download data only when you first look up a tract.
 
 ## Look up tracts
 
 ```sh
 s2-tracts 9936721416563002943
+s2-tracts --vintage 2019 9936721416563002943
 ```
 
+The default vintage is **2020**.
+The first lookup for a vintage downloads a Zstandard-compressed national file and expands it to an indexed FlatGeobuf; later lookups use the cached file offline.
+For 2020, that is a 222 MB download and a 684 MB installed file.
 The command returns one JSON object per ID:
 
 ```json
-{"s2_cell_id":"9936721416563002943","tract_2010":"09003502100","tract_2020":"09003502100"}
+{"s2_cell_id":"9936721416563002943","tract":"09003502100","vintage":2020}
 ```
 
 Pass multiple IDs as arguments, or pipe one ID per line on standard input:
 
 ```sh
-printf '%s\n' 9936721416563002943 | s2-tracts > tracts.jsonl
+printf '%s\n' 9936721416563002943 | s2-tracts --vintage 2020 > tracts.jsonl
 ```
 
 Results stay in input order, including duplicate IDs.
 IDs are strings so large S2 values and leading zeros in GEOIDs stay intact.
-A `null` tract means that vintage has no unambiguous strict match at the cell center.
+A `null` tract means the cell center has no unambiguous strict match in the selected vintage.
 Points on tract boundaries have no match; the tool does not choose a nearest tract.
 Invalid or non-level-30 S2 IDs produce an error and no output.
 
 ## Manage downloaded data
 
-The installer downloads both tract vintages.
-To verify and reuse the downloaded data later, run:
+To download a vintage before lookup:
 
 ```sh
-s2-tracts data install
+s2-tracts data install --vintage 2020
+s2-tracts data install --vintage 2019
 ```
 
-By default, the data is installed in `~/.local/share/s2-tracts/s2-tracts-2010-2020-r1`.
-If `XDG_DATA_HOME` is set, the path is `$XDG_DATA_HOME/s2-tracts/s2-tracts-2010-2020-r1` instead.
-`s2-tracts data path` prints the effective location on your computer.
+`s2-tracts data path --vintage 2019` prints that year's file path.
+Each vintage lives in a separate directory under `~/.local/share/s2-tracts` or `$XDG_DATA_HOME/s2-tracts`.
+An existing verified `v0.1.0` 2010 or 2020 file is reused through a hard link when possible.
+The selected vintage must have a prepared asset in the release matching your CLI version.
+Use `s2-tracts --help` for the supported year range.
 
-Set `XDG_DATA_HOME` before installation if you want the data under another parent directory.
+Annual TIGER/Line files describe the boundaries for their stated vintage.
+Tract codes and boundaries can change between years, particularly around a decennial census.
+Choose the vintage matching the data you intend to join; 2020 is only the default, not a universal match for later or earlier data.
+For example, [Connecticut adopted new county equivalents in the 2022 TIGER/Line vintage](https://www.census.gov/geographies/mapping-files/2022/geo/tiger-line-file.html), changing the county portion of some tract GEOIDs.

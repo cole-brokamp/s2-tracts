@@ -1,0 +1,450 @@
+[
+  {
+    "year": 2022,
+    "state": "01",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_01_tract.zip",
+    "filename": "tl_2022_01_tract.zip",
+    "bytes": 11730278,
+    "sha256": "9bb8e9749f357edc7955279dd313be7fa47a472eb621bd3b9b83eb57d3094aa4"
+  },
+  {
+    "year": 2022,
+    "state": "02",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_02_tract.zip",
+    "filename": "tl_2022_02_tract.zip",
+    "bytes": 3161807,
+    "sha256": "d1b56cfbfe6f5f7abf328945e3adafcc7f1892e41f87f87930116b86000b3d6c"
+  },
+  {
+    "year": 2022,
+    "state": "04",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_04_tract.zip",
+    "filename": "tl_2022_04_tract.zip",
+    "bytes": 8481158,
+    "sha256": "490501b1e52482e613949a2cdf969a3322b4f376ed8cff9cccc9f88a8c91fe6d"
+  },
+  {
+    "year": 2022,
+    "state": "05",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_05_tract.zip",
+    "filename": "tl_2022_05_tract.zip",
+    "bytes": 10547222,
+    "sha256": "b1bc233f3276274e612791b264849f31a084982310f6e3b4087f99b3b9495231"
+  },
+  {
+    "year": 2022,
+    "state": "06",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_06_tract.zip",
+    "filename": "tl_2022_06_tract.zip",
+    "bytes": 32437845,
+    "sha256": "5a30a9d6e19d6bc79668f1f50f860d72b2d62e89d26a83f97bad499212b864e1"
+  },
+  {
+    "year": 2022,
+    "state": "08",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_08_tract.zip",
+    "filename": "tl_2022_08_tract.zip",
+    "bytes": 8343856,
+    "sha256": "865fcfa22f13f75b66e6ba958abf39dd3ea50ceaf7d32e468d9b34a8e910f74b"
+  },
+  {
+    "year": 2022,
+    "state": "09",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_09_tract.zip",
+    "filename": "tl_2022_09_tract.zip",
+    "bytes": 2712989,
+    "sha256": "0ba5cc457c43741c9f021102604ade387355a0a7eb19603ffdc71b3ec67a3ea8"
+  },
+  {
+    "year": 2022,
+    "state": "10",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_10_tract.zip",
+    "filename": "tl_2022_10_tract.zip",
+    "bytes": 1099624,
+    "sha256": "77ffabc51b523e05a1f368d6bbeb0212dadab7200467ec2791492a2aa9e98b73"
+  },
+  {
+    "year": 2022,
+    "state": "11",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_11_tract.zip",
+    "filename": "tl_2022_11_tract.zip",
+    "bytes": 367368,
+    "sha256": "49b9d9d3a22443764df8da9d7ae7323a797a82aeab22331f5c0aa9e875b46a07"
+  },
+  {
+    "year": 2022,
+    "state": "12",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_12_tract.zip",
+    "filename": "tl_2022_12_tract.zip",
+    "bytes": 13684294,
+    "sha256": "27283a2fe596f893029429aa7a0d11d6619637968b0acb72316456c5dcce19f8"
+  },
+  {
+    "year": 2022,
+    "state": "13",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_13_tract.zip",
+    "filename": "tl_2022_13_tract.zip",
+    "bytes": 15862268,
+    "sha256": "ff77683393988d92d4e69a25f3a1c6ade50df6bcf578d0fe544940406b5094fd"
+  },
+  {
+    "year": 2022,
+    "state": "15",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_15_tract.zip",
+    "filename": "tl_2022_15_tract.zip",
+    "bytes": 1767549,
+    "sha256": "8b24db28db2cd27d88368a5f7a72b2e482c47cefb0b06b00e93bb5332239d865"
+  },
+  {
+    "year": 2022,
+    "state": "16",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_16_tract.zip",
+    "filename": "tl_2022_16_tract.zip",
+    "bytes": 4828553,
+    "sha256": "30d20aa8602bff1deabf667385a090d3a8344fac30c9802b77e9b10ba423d97f"
+  },
+  {
+    "year": 2022,
+    "state": "17",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_17_tract.zip",
+    "filename": "tl_2022_17_tract.zip",
+    "bytes": 10005539,
+    "sha256": "ec3011e6ef485151620e3e4d17f052101f819bd5f6c36dd7da855dcb0d5c8348"
+  },
+  {
+    "year": 2022,
+    "state": "18",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_18_tract.zip",
+    "filename": "tl_2022_18_tract.zip",
+    "bytes": 6303522,
+    "sha256": "aad511834d3e0274e89a4b61437e712370770727aa0c80714392e0f8a051689e"
+  },
+  {
+    "year": 2022,
+    "state": "19",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_19_tract.zip",
+    "filename": "tl_2022_19_tract.zip",
+    "bytes": 4108041,
+    "sha256": "697053ec2ad12ab1106b9fc32114139ab66d6b6369321c8d5bbbb8e34cc2fbdb"
+  },
+  {
+    "year": 2022,
+    "state": "20",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_20_tract.zip",
+    "filename": "tl_2022_20_tract.zip",
+    "bytes": 3105802,
+    "sha256": "6d798550862dedd3b2b2b08d077e216b025d7996b8e69833ff3a81dfd79ed0e5"
+  },
+  {
+    "year": 2022,
+    "state": "21",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_21_tract.zip",
+    "filename": "tl_2022_21_tract.zip",
+    "bytes": 13232307,
+    "sha256": "50eb67e71b77daa52b718e69c547148710c400abcdea74191d3c95e2c680737f"
+  },
+  {
+    "year": 2022,
+    "state": "22",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_22_tract.zip",
+    "filename": "tl_2022_22_tract.zip",
+    "bytes": 8346399,
+    "sha256": "d5a779954daed63d601765d0229fcb8c83a62c4150c981537d8294ad6285af66"
+  },
+  {
+    "year": 2022,
+    "state": "23",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_23_tract.zip",
+    "filename": "tl_2022_23_tract.zip",
+    "bytes": 3169508,
+    "sha256": "a42c855399ceeb03c400589cb1c94e5659c4557ceece8d30542fcfb5bc9fd912"
+  },
+  {
+    "year": 2022,
+    "state": "24",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_24_tract.zip",
+    "filename": "tl_2022_24_tract.zip",
+    "bytes": 5825242,
+    "sha256": "414a86fa390e0f1e679087c7b328773b356d5859a902b3e61008d1f5450b2f67"
+  },
+  {
+    "year": 2022,
+    "state": "25",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_25_tract.zip",
+    "filename": "tl_2022_25_tract.zip",
+    "bytes": 4521583,
+    "sha256": "1cf53f68025f1abce7bd2737822bd65f614bab798ba4bc65192afe8dced6eb3a"
+  },
+  {
+    "year": 2022,
+    "state": "26",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_26_tract.zip",
+    "filename": "tl_2022_26_tract.zip",
+    "bytes": 5561748,
+    "sha256": "2fe3c0983c8b1851d1e79894024dc40a50271c0664ca3a73865da4416dfa6876"
+  },
+  {
+    "year": 2022,
+    "state": "27",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_27_tract.zip",
+    "filename": "tl_2022_27_tract.zip",
+    "bytes": 7458427,
+    "sha256": "fed400cc49d9e5a7f2c00274a4c3b536633f78d48d0feba96efac10cf8bc8386"
+  },
+  {
+    "year": 2022,
+    "state": "28",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_28_tract.zip",
+    "filename": "tl_2022_28_tract.zip",
+    "bytes": 9682637,
+    "sha256": "cc0a0c7cfe24bbc661a3f0a315a38b1b8321c2eca262abb3de930f46fc752cfb"
+  },
+  {
+    "year": 2022,
+    "state": "29",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_29_tract.zip",
+    "filename": "tl_2022_29_tract.zip",
+    "bytes": 10453350,
+    "sha256": "d1c8442d52e7145d17fe0fafe3d92c820b4dd2be5750ab25befeb81661ade123"
+  },
+  {
+    "year": 2022,
+    "state": "30",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_30_tract.zip",
+    "filename": "tl_2022_30_tract.zip",
+    "bytes": 7026345,
+    "sha256": "4ef11d18d2ac2846e5e35276e86f7735f021813fd3a6237df21090d8e8503e3d"
+  },
+  {
+    "year": 2022,
+    "state": "31",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_31_tract.zip",
+    "filename": "tl_2022_31_tract.zip",
+    "bytes": 2216097,
+    "sha256": "e6a4e62a0e7d6a3db2bcd2ad14c93d16128431e7f347e39d368e73a3f00fd4aa"
+  },
+  {
+    "year": 2022,
+    "state": "32",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_32_tract.zip",
+    "filename": "tl_2022_32_tract.zip",
+    "bytes": 3192466,
+    "sha256": "4172ebf679d6649a2484d220b21627a9399d6fcc2eb943ed12e26d5b09d9e8f6"
+  },
+  {
+    "year": 2022,
+    "state": "33",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_33_tract.zip",
+    "filename": "tl_2022_33_tract.zip",
+    "bytes": 1501847,
+    "sha256": "ea70df603d75c23fd01ffd15a33c40a0387dce69006f6affdd68c11961955786"
+  },
+  {
+    "year": 2022,
+    "state": "34",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_34_tract.zip",
+    "filename": "tl_2022_34_tract.zip",
+    "bytes": 7110984,
+    "sha256": "bec4d351275e6cc3c7613fd845303a771dd9094ba9e20154394d5ece955d945f"
+  },
+  {
+    "year": 2022,
+    "state": "35",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_35_tract.zip",
+    "filename": "tl_2022_35_tract.zip",
+    "bytes": 4946800,
+    "sha256": "a0fcc010d6f6e57cdcd19ba06abf34f698782c2cc5cc070a6d76a0b6e3a81e7f"
+  },
+  {
+    "year": 2022,
+    "state": "36",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_36_tract.zip",
+    "filename": "tl_2022_36_tract.zip",
+    "bytes": 8816194,
+    "sha256": "bdcf98e684c07df194ed29af7aaa7e183bce47cda65672701714ff3820e1b568"
+  },
+  {
+    "year": 2022,
+    "state": "37",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_37_tract.zip",
+    "filename": "tl_2022_37_tract.zip",
+    "bytes": 19920777,
+    "sha256": "6660e85682a9dfd55c8bed8b4fdaa1dcf663215b2e1cb89a3b718fed6a740c88"
+  },
+  {
+    "year": 2022,
+    "state": "38",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_38_tract.zip",
+    "filename": "tl_2022_38_tract.zip",
+    "bytes": 1805547,
+    "sha256": "c540ac7c4e32d273b74bb57b6133831c9e178c8ee7b68bd776cc981793eac66d"
+  },
+  {
+    "year": 2022,
+    "state": "39",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_39_tract.zip",
+    "filename": "tl_2022_39_tract.zip",
+    "bytes": 9424329,
+    "sha256": "6dfb7f689eb28715c8a18473e0a37e1b7af6d1777746e7fc49c1a66248446a35"
+  },
+  {
+    "year": 2022,
+    "state": "40",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_40_tract.zip",
+    "filename": "tl_2022_40_tract.zip",
+    "bytes": 6913694,
+    "sha256": "a5903355832c2c5c3d41cf550efa031474f54eefbc3ac2c9b3941bce7aea6742"
+  },
+  {
+    "year": 2022,
+    "state": "41",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_41_tract.zip",
+    "filename": "tl_2022_41_tract.zip",
+    "bytes": 10628073,
+    "sha256": "ab3ad492233055a79a85b2159f6151dda5eae2135d3b44fa4e21ac3f6160cfca"
+  },
+  {
+    "year": 2022,
+    "state": "42",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_42_tract.zip",
+    "filename": "tl_2022_42_tract.zip",
+    "bytes": 12880669,
+    "sha256": "1e8946a1396f7ae9040b48efab8d06d77dd192b899531f9c639f526cf6f0e0a7"
+  },
+  {
+    "year": 2022,
+    "state": "44",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_44_tract.zip",
+    "filename": "tl_2022_44_tract.zip",
+    "bytes": 822855,
+    "sha256": "715920e96b7f4954990a2c03461b6161df857be6c99a2df5692a71223f13e6a6"
+  },
+  {
+    "year": 2022,
+    "state": "45",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_45_tract.zip",
+    "filename": "tl_2022_45_tract.zip",
+    "bytes": 9801863,
+    "sha256": "65fb814a85f3ec342915507b53ed3239e483ed5c4503b1ade912558bbbefe169"
+  },
+  {
+    "year": 2022,
+    "state": "46",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_46_tract.zip",
+    "filename": "tl_2022_46_tract.zip",
+    "bytes": 2854489,
+    "sha256": "f4fc07300024383d9919b9874349e6ffe5aa7940553830b376adbd81876709a4"
+  },
+  {
+    "year": 2022,
+    "state": "47",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_47_tract.zip",
+    "filename": "tl_2022_47_tract.zip",
+    "bytes": 15669486,
+    "sha256": "fdc47ca4ddebfb5295aeeba8ac4783fdca6d770785c69bf2cecdb0177c89e0f3"
+  },
+  {
+    "year": 2022,
+    "state": "48",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_48_tract.zip",
+    "filename": "tl_2022_48_tract.zip",
+    "bytes": 32645247,
+    "sha256": "51412c41e194ceec533d2ef7ea79991afbae06fa14d182895bc57206cad9561d"
+  },
+  {
+    "year": 2022,
+    "state": "49",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_49_tract.zip",
+    "filename": "tl_2022_49_tract.zip",
+    "bytes": 5615111,
+    "sha256": "f8407eea5672c25ca59b7d8e1ba57d0cbd284e457fe4f613f5c2e8945178ca7a"
+  },
+  {
+    "year": 2022,
+    "state": "50",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_50_tract.zip",
+    "filename": "tl_2022_50_tract.zip",
+    "bytes": 776990,
+    "sha256": "0f538dcb1e53e7ed4f9ee352fbaefaa4fd5067d518987e2f07f675dec9859e29"
+  },
+  {
+    "year": 2022,
+    "state": "51",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_51_tract.zip",
+    "filename": "tl_2022_51_tract.zip",
+    "bytes": 16672719,
+    "sha256": "431d0c4e06cf917018595f84e833083707c4c239eed6775138a5e791d15ee7c4"
+  },
+  {
+    "year": 2022,
+    "state": "53",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_53_tract.zip",
+    "filename": "tl_2022_53_tract.zip",
+    "bytes": 9822257,
+    "sha256": "1e4e2e302d014aa8e00468555f988c1ac52abe08cd10083c58eb359de5bc0896"
+  },
+  {
+    "year": 2022,
+    "state": "54",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_54_tract.zip",
+    "filename": "tl_2022_54_tract.zip",
+    "bytes": 7982776,
+    "sha256": "d4b22ba489da57b7584365d3f58b4d553fa273541077da09caaff00b61c20575"
+  },
+  {
+    "year": 2022,
+    "state": "55",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_55_tract.zip",
+    "filename": "tl_2022_55_tract.zip",
+    "bytes": 7685662,
+    "sha256": "984f50e43a9d37f4ef521c5e6ab974dc9b460f37e8cd76f6a8e8a21f4ea8945d"
+  },
+  {
+    "year": 2022,
+    "state": "56",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_56_tract.zip",
+    "filename": "tl_2022_56_tract.zip",
+    "bytes": 2794705,
+    "sha256": "efb777ae60d29fb7b69e3263a3350c00369e06b341381f25b751ba3681dd0cea"
+  },
+  {
+    "year": 2022,
+    "state": "60",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_60_tract.zip",
+    "filename": "tl_2022_60_tract.zip",
+    "bytes": 40774,
+    "sha256": "b755ea5af2c092887b38f5e3b4d72816a651f2cb07de695d3cedf15e2293a144"
+  },
+  {
+    "year": 2022,
+    "state": "66",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_66_tract.zip",
+    "filename": "tl_2022_66_tract.zip",
+    "bytes": 560012,
+    "sha256": "ec40e06ecee408aa4c4be3ff5c84e5c53f65cd28b9baa5d3978b8e552b410cd4"
+  },
+  {
+    "year": 2022,
+    "state": "69",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_69_tract.zip",
+    "filename": "tl_2022_69_tract.zip",
+    "bytes": 373933,
+    "sha256": "64f65a54344fef9bd8a5bcf39e73c7840df691869c40af83bb5d96172de371b1"
+  },
+  {
+    "year": 2022,
+    "state": "72",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_72_tract.zip",
+    "filename": "tl_2022_72_tract.zip",
+    "bytes": 3443937,
+    "sha256": "afa6e1b67131c0a5f57e687a86855855cb8c930b96bd15de8341b57b54204ec2"
+  },
+  {
+    "year": 2022,
+    "state": "78",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2022/TRACT/tl_2022_78_tract.zip",
+    "filename": "tl_2022_78_tract.zip",
+    "bytes": 396897,
+    "sha256": "b634585f73efaebfe9a1d9ee054d22d85a3a99d70112ea9c77d414ee2acd5629"
+  }
+]
