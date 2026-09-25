@@ -1,9 +1,10 @@
 #!/usr/bin/env Rscript
-# Download and verify the exact locked decennial archives.
+# Download and verify one annual TIGER/Line tract vintage.
 source(file.path(dirname(sub("^--file=", "", grep("^--file=", commandArgs(), value = TRUE)[[1]])), "common.R"))
-args <- options_from_args(list(sources = file.path(project_root, "work/sources")))
+args <- options_from_args(list(vintage = "2020", sources = file.path(project_root, "work/sources")))
+vintage <- check_vintage(args$vintage)
 dir.create(args$sources, recursive = TRUE, showWarnings = FALSE)
-records <- source_lock()
+records <- source_lock(vintage)
 options(timeout = max(120, getOption("timeout")))
 
 for (i in seq_len(nrow(records))) {

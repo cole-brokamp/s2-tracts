@@ -10,11 +10,12 @@ fn rectangle(x: f64, y: f64, radius: f64) -> Polygon {
 }
 
 fn fixture_bytes(year: u16, features: &[(String, Polygon)]) -> Vec<u8> {
+    let title = format!("census-tracts-{year}-{DATA_REVISION}");
     let mut writer = FgbWriter::create_with_options(
         &format!("tracts_{year}"),
         GeometryType::Polygon,
         FgbWriterOptions {
-            title: Some(BUNDLE_TITLE),
+            title: Some(&title),
             ..Default::default()
         },
     )
@@ -64,22 +65,26 @@ fn inputs_order_duplicates_independent_years_and_reuse() {
         &[("01001000100".into(), rectangle(pa.x, pa.y, 0.1))],
         &[("09001000200".into(), rectangle(pb.x, pb.y, 0.1))],
     );
-    let mut lookup = TractLookup::open(dir.path()).unwrap();
+    let mut lookup = TractLookup::open(dir.path(), 2010).unwrap();
     assert_eq!(lookup.lookup(&[]).unwrap(), vec![]);
-    let ra = TractIds {
-        tract_2010: Some("01001000100".into()),
-        tract_2020: None,
-    };
-    let rb = TractIds {
-        tract_2010: None,
-        tract_2020: Some("09001000200".into()),
-    };
     for _ in 0..3 {
         assert_eq!(
             lookup.lookup(&[b, a, a, b]).unwrap(),
-            vec![rb.clone(), ra.clone(), ra.clone(), rb.clone()]
+            vec![
+                None,
+                Some("01001000100".into()),
+                Some("01001000100".into()),
+                None
+            ]
         );
     }
+    assert_eq!(
+        TractLookup::open(dir.path(), 2020)
+            .unwrap()
+            .lookup(&[b, a])
+            .unwrap(),
+        vec![Some("09001000200".into()), None]
+    );
     for value in [0, u64::MAX, CellID(a).parent(29).0, CellID::from_face(0).0] {
         assert!(matches!(lookup.lookup(&[a, value, b]),
             Err(LookupError::InvalidCellId { index: 1, value: v }) if v == value));
@@ -161,14 +166,11 @@ fn exact_s2_center_on_edge_and_vertex() {
         let features = [("01001000100".into(), polygon)];
         let dir = bundle(&features, &features);
         assert_eq!(
-            TractLookup::open(dir.path())
+            TractLookup::open(dir.path(), 2010)
                 .unwrap()
                 .lookup(&[id])
                 .unwrap(),
-            vec![TractIds {
-                tract_2010: None,
-                tract_2020: None
-            }]
+            vec![None]
         );
     }
 }
@@ -208,9 +210,9 @@ fn antimeridian_equivalent_longitudes_holes_and_boundary() {
 #[test]
 fn missing_malformed_swapped_and_bad_properties() {
     let dir = tempfile::tempdir().unwrap();
-    assert!(TractLookup::open(dir.path()).is_err());
+    assert!(TractLookup::open(dir.path(), 2010).is_err());
     std::fs::write(dir.path().join("tracts_2010.fgb"), b"not flatgeobuf").unwrap();
-    assert!(TractLookup::open(dir.path()).is_err());
+    assert!(TractLookup::open(dir.path(), 2010).is_err());
     let a = [("01001000100".into(), rectangle(0., 0., 1.))];
     let dir = bundle(&a, &a);
     std::fs::copy(
@@ -218,7 +220,7 @@ fn missing_malformed_swapped_and_bad_properties() {
         dir.path().join("tracts_2010.fgb"),
     )
     .unwrap();
-    assert!(TractLookup::open(dir.path()).is_err());
+    assert!(TractLookup::open(dir.path(), 2010).is_err());
     for invalid in ["1001000100", "0100100010x", "", "010010001000"] {
         let bytes = fixture_bytes(2010, &[(invalid.into(), rectangle(0., 0., 1.))]);
         assert!(
@@ -272,10 +274,10 @@ fn actual_io_failure_is_not_an_unmatched_result() {
 #[test]
 fn incompatible_index_revision_and_schema_fail_at_open() {
     for (indexed, title, column) in [
-        (false, Some(BUNDLE_TITLE), "GEOID"),
+        (false, Some("census-tracts-2010-r1"), "GEOID"),
         (true, None, "GEOID"),
         (true, Some("census-tracts-2010-2020-r2"), "GEOID"),
-        (true, Some(BUNDLE_TITLE), "GEOID10"),
+        (true, Some("census-tracts-2010-r1"), "GEOID10"),
     ] {
         let dir = tempfile::tempdir().unwrap();
         let mut writer = FgbWriter::create_with_options(
@@ -322,18 +324,9 @@ fn unwrapped_antimeridian_through_public_s2_api() {
     let (west, _) = id_and_center(10., -179.5);
     let features = [("02016000100".into(), rectangle(-180., 10., 1.))];
     let dir = bundle(&features, &features);
-    let result = TractLookup::open(dir.path())
+    let result = TractLookup::open(dir.path(), 2010)
         .unwrap()
         .lookup(&[east, west, east])
         .unwrap();
-    assert_eq!(
-        result,
-        vec![
-            TractIds {
-                tract_2010: Some("02016000100".into()),
-                tract_2020: Some("02016000100".into())
-            };
-            3
-        ]
-    );
+    assert_eq!(result, vec![Some("02016000100".into()); 3]);
 }
