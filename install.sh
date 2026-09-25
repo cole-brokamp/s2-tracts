@@ -42,7 +42,7 @@ case ":$PATH:" in
   *) printf 'Add %s to your PATH to run s2-tracts directly.\n' "$bin_dir" ;;
 esac
 printf 'Data downloads on first lookup. To prefetch a year, run: %s data install --vintage 2020\n' "$bin_dir/s2-tracts"
-if [ -r /dev/tty ] && [ -w /dev/tty ]; then
+if [ -t 1 ]; then
   printf 'Install the default 2020 tract data now? [y/N] ' > /dev/tty
   if IFS= read -r answer < /dev/tty; then
     case "$answer" in
