@@ -53,7 +53,6 @@ s2-tracts data install --vintage 2019
 
 `s2-tracts data path --vintage 2019` prints that year's file path.
 Each vintage lives in a separate directory under `~/.local/share/s2-tracts` or `$XDG_DATA_HOME/s2-tracts`.
-An existing verified `v0.1.0` 2010 or 2020 file is reused through a hard link when possible.
 The selected vintage must have a prepared asset in the release matching your CLI version.
 Use `s2-tracts --help` for the supported year range.
 

@@ -41,14 +41,9 @@ valid_source_archive <- function(path, filename) {
 
 source_lock <- function(vintage) {
   path <- file.path(project_root, "scripts", paste0("sources-", vintage, ".lock.json"))
-  if (file.exists(path)) {
-    records <- jsonlite::fromJSON(path)
-  } else {
-    require_ok(vintage %in% c(2010L, 2020L),
-               paste("Source lock missing for", vintage, "; run scripts/lock-year.R first"))
-    records <- jsonlite::fromJSON(file.path(project_root, "scripts/sources.lock.json"))
-    records <- records[records$year == vintage, ]
-  }
+  require_ok(file.exists(path),
+             paste("Source lock missing for", vintage, "; run scripts/lock-year.R first"))
+  records <- jsonlite::fromJSON(path)
   expected <- paste(vintage, states, sep = ":")
   require_ok(nrow(records) == length(states) &&
                setequal(paste(records$year, records$state, sep = ":"), expected),

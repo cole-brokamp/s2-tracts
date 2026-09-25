@@ -248,18 +248,6 @@ fn install_data(path: &Path, vintage: u16) -> Result<(), Box<dyn Error>> {
     fs::create_dir(&stage)?;
     let result = (|| -> Result<(), Box<dyn Error>> {
         let staged_file = stage.join(&name);
-        if [2010, 2020].contains(&vintage) {
-            let legacy = parent.join("s2-tracts-2010-2020-r1").join(&name);
-            if legacy.is_file()
-                && fs::metadata(&legacy)?.len() == expected.raw_bytes
-                && sha256(&legacy)? == expected.raw_sha256
-                && fs::hard_link(&legacy, &staged_file).is_ok()
-            {
-                TractLookup::open(&stage, vintage)?;
-                fs::rename(&stage, dir)?;
-                return Ok(());
-            }
-        }
         let base = release_base();
         let archive = stage.join(&archive_name);
         eprintln!("Downloading {archive_name} from {base}");

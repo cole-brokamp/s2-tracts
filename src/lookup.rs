@@ -95,10 +95,8 @@ impl Dataset {
             let fgb = FgbReader::open(&mut reader)?;
             let h = fgb.header();
             let current_title = format!("census-tracts-{year}-{DATA_REVISION}");
-            let legacy_title = "census-tracts-2010-2020-r1";
             if h.name() != Some(format!("tracts_{year}").as_str())
-                || (h.title() != Some(current_title.as_str())
-                    && !([2010, 2020].contains(&year) && h.title() == Some(legacy_title)))
+                || h.title() != Some(current_title.as_str())
                 || h.geometry_type() != GeometryType::Polygon
                 || h.has_z() || h.has_m() || h.has_t() || h.has_tm()
                 // flatgeobuf 6.0.1's seekable reader assumes node size 16.

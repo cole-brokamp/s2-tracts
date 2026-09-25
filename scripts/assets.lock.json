@@ -1,9 +1,9 @@
 {
   "2010": {
-    "raw_bytes": 612741776,
-    "raw_sha256": "efd9d71eb758a0134fb3c1b2fda0a8d5902008d4c6f7e5531fa4c4d32f049e82",
-    "archive_bytes": 199650058,
-    "archive_sha256": "31b2eb13d8528aaae8afec2f737d5c8736ce95c7b7bbfe191e772deb27d4e65b"
+    "raw_bytes": 612741768,
+    "raw_sha256": "ae2f3da195a493773a1fc86b2b8a9b6ee4f15d4905aa64192f516f3d885f59fc",
+    "archive_bytes": 199651880,
+    "archive_sha256": "301ca22a6e1ff0f2c81775e1b9e995aec85bf7c6c539b5437bfbd2c7cc336c09"
   },
   "2011": {
     "raw_bytes": 608682984,
@@ -60,10 +60,10 @@
     "archive_sha256": "68476fa3a0b5dade0f900315737d698e85f3b439c1308d259d7a2da4c64a29cc"
   },
   "2020": {
-    "raw_bytes": 684167640,
-    "raw_sha256": "a22f95dc3b25e58c01809abfbed5b01191869d333f6d2d62e9bf712ed7903033",
-    "archive_bytes": 222195693,
-    "archive_sha256": "670f9a598282dea227e9c5d15ea08d10671f5c68764d69225c6e367ca2224618"
+    "raw_bytes": 684167632,
+    "raw_sha256": "b55f1ca227e5dfbe75846098c8d530817475f5729befae4ef80fb0fb8837429a",
+    "archive_bytes": 222189201,
+    "archive_sha256": "b159b0351f20d93674baf7dffc9cdda1917948b049ae423cb9f27237fc7b8206"
   },
   "2021": {
     "raw_bytes": 684689552,
