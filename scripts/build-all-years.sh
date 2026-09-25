@@ -7,13 +7,7 @@ for year in $(seq 2010 2025); do
     printf '%s already prepared\n' "$year"
     continue
   fi
-  if { [ "$year" = 2010 ] || [ "$year" = 2020 ]; } &&
-     [ -f "dist/census-tracts-2010-2020-r1-r/tracts_$year.fgb" ]; then
-    printf '%s already prepared in original bundle\n' "$year"
-    continue
-  fi
-  if [ ! -f "scripts/sources-$year.lock.json" ] &&
-     [ "$year" != 2010 ] && [ "$year" != 2020 ]; then
+  if [ ! -f "scripts/sources-$year.lock.json" ]; then
     Rscript scripts/lock-year.R --vintage "$year"
   fi
   Rscript scripts/download.R --vintage "$year"
