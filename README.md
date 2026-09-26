@@ -36,6 +36,19 @@ Pass multiple IDs as arguments, or pipe one ID per line on standard input:
 printf '%s\n' 9936721416563002943 9936721416563002945 | s2-tracts --vintage 2020 > tracts.jsonl
 ```
 
+From R, pass character IDs to the CLI and read its JSON Lines output with `jsonlite`:
+
+```r
+ids <- c("9936721416563002943", "9936721416563002945")
+
+lines <- system2(
+  path.expand("~/.local/bin/s2-tracts"),
+  c("--vintage", "2020"),
+  input = ids, stdout = TRUE
+)
+tracts <- jsonlite::stream_in(textConnection(lines), verbose = FALSE)
+```
+
 Results stay in input order, including duplicate IDs.
 IDs are strings so large S2 values and leading zeros in GEOIDs stay intact.
 A `null` tract means the cell center has no unambiguous strict match in the selected vintage.
