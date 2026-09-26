@@ -34,6 +34,10 @@ if [ "$actual" != "$expected" ]; then
   exit 1
 fi
 chmod 755 "$tmp_dir/$asset"
+"$tmp_dir/$asset" --version >/dev/null || {
+  echo 'Downloaded binary cannot run on this system' >&2
+  exit 1
+}
 mkdir -p "$bin_dir"
 mv "$tmp_dir/$asset" "$bin_dir/s2-tracts"
 printf 'Installed %s\n' "$bin_dir/s2-tracts"

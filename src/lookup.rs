@@ -13,7 +13,7 @@ use std::fs::File;
 use std::io::{BufReader, Read, Seek};
 use std::path::{Path, PathBuf};
 
-pub const DATA_REVISION: &str = "r1";
+pub const DATA_REVISION: &str = "r2";
 
 /// An input or dataset failure. Input errors identify the original batch index.
 #[derive(Debug, thiserror::Error)]

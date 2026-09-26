@@ -23,7 +23,7 @@ s2-tracts --vintage 2019 9936721416563002943
 
 The default vintage is **2020**.
 The first lookup for a vintage downloads a Zstandard-compressed national file and expands it to an indexed FlatGeobuf; later lookups use the cached file offline.
-For 2020, that is a 222 MB download and a 684 MB installed file.
+The download and installed file sizes vary by vintage and release.
 The command returns one JSON object per ID:
 
 ```json
