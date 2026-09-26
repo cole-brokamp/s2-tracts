@@ -7,12 +7,12 @@ Look up a US Census tract GEOID for an unsigned level-30 S2 cell ID using a sele
 On macOS or Linux:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/cole-brokamp/s2-tracts/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/cole-brokamp/s2-tracts/main/install.sh | sh -s -- v0.3.0
 ```
 
-The installer places the CLI at `~/.local/bin/s2-tracts` and does not require tract data to be downloaded.
-When run in a terminal, it offers to preinstall the default 2020 vintage.
-Choose no to download data only when you first look up a tract.
+The version argument pins the binary and its matching tract-data release; replace `v0.3.0` with another published version to install it.
+The installer verifies the binary, downloads and verifies the 2020 tract data, and places the CLI at `~/.local/bin/s2-tracts`.
+Set `S2_TRACTS_BIN_DIR` to use a different binary directory.
 
 ## Look up tracts
 
@@ -22,7 +22,8 @@ s2-tracts --vintage 2019 9936721416563002943
 ```
 
 The default vintage is **2020**.
-The first lookup for a vintage downloads a Zstandard-compressed national file and expands it to an indexed FlatGeobuf; later lookups use the cached file offline.
+The installer prepares 2020 for offline lookup.
+The first lookup for another vintage downloads a Zstandard-compressed national file and expands it to an indexed FlatGeobuf; later lookups use the cached file offline.
 The download and installed file sizes vary by vintage and release.
 The command returns one JSON object per ID:
 

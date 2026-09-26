@@ -57,7 +57,6 @@ For subsequent runs, use `sh scripts/assets.sh freeze` to verify that the pinned
 3. Upload every prepared year to that draft release with `sh scripts/release-data.sh YEAR v0.3.0`.
 4. Verify the binaries, sidecars, and data assets, then publish the draft release and check the README install command on a clean machine.
 
-The installer fetches and verifies the latest published binary without downloading data.
-It offers to preinstall the default vintage when a terminal is attached.
+The installer fetches and verifies the requested version's binary, then installs the default 2020 tract data before placing the CLI in the binary directory.
 On first lookup, the CLI downloads only the selected vintage from the release matching its binary version, verifies both hashes against its embedded manifest and the FlatGeobuf schema, and atomically places the expanded file in the user data directory.
 The environment variable `S2_TRACTS_RELEASE_BASE_URL` can point data installation to a local or mirrored versioned asset URL for development.

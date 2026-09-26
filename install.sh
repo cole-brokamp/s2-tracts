@@ -2,7 +2,12 @@
 set -eu
 
 repository='cole-brokamp/s2-tracts'
-base="https://github.com/$repository/releases/latest/download"
+if [ "$#" -ne 1 ] || ! printf '%s\n' "$1" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
+  echo 'usage: sh install.sh vMAJOR.MINOR.PATCH' >&2
+  exit 1
+fi
+version=$1
+base="https://github.com/$repository/releases/download/$version"
 case "$(uname -s)" in
   Darwin) os=macos ;;
   Linux) os=linux ;;
@@ -34,23 +39,19 @@ if [ "$actual" != "$expected" ]; then
   exit 1
 fi
 chmod 755 "$tmp_dir/$asset"
-"$tmp_dir/$asset" --version >/dev/null || {
+installed_version="$("$tmp_dir/$asset" --version)" || {
   echo 'Downloaded binary cannot run on this system' >&2
   exit 1
 }
+if [ "$installed_version" != "s2-tracts ${version#v}" ]; then
+  echo "Downloaded binary version does not match $version" >&2
+  exit 1
+fi
+"$tmp_dir/$asset" data install --vintage 2020
 mkdir -p "$bin_dir"
 mv "$tmp_dir/$asset" "$bin_dir/s2-tracts"
-printf 'Installed %s\n' "$bin_dir/s2-tracts"
+printf 'Installed %s with 2020 tract data\n' "$bin_dir/s2-tracts"
 case ":$PATH:" in
   *":$bin_dir:"*) ;;
   *) printf 'Add %s to your PATH to run s2-tracts directly.\n' "$bin_dir" ;;
 esac
-printf 'Data downloads on first lookup. To prefetch a year, run: %s data install --vintage 2020\n' "$bin_dir/s2-tracts"
-if [ -t 1 ]; then
-  printf 'Install the default 2020 tract data now? [y/N] ' > /dev/tty
-  if IFS= read -r answer < /dev/tty; then
-    case "$answer" in
-      y|Y|yes|YES) "$bin_dir/s2-tracts" data install --vintage 2020 ;;
-    esac
-  fi
-fi
