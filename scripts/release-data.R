@@ -67,7 +67,7 @@ release_data <- function(year, tag) {
 tag <- Sys.getenv("S2_TRACTS_RELEASE_TAG")
 if (!grepl("^v[0-9]+[.][0-9]+[.][0-9]+$", tag)) {
   stop(
-    "Set S2_TRACTS_RELEASE_TAG to a version tag, such as v0.3.0, before running this script.",
+    "Set S2_TRACTS_RELEASE_TAG to a version tag, such as v0.4.0, before running this script.",
     call. = FALSE
   )
 }

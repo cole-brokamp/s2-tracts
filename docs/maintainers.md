@@ -15,7 +15,7 @@ For an intentional asset repin, use `S2_TRACTS_REPLACE_MANIFEST=true Rscript scr
 Commit changes, create and push a tag matching `Cargo.toml`, then run **Build release binaries** in GitHub Actions with that tag to create the draft release. Upload all years to it:
 
 ```sh
-S2_TRACTS_RELEASE_TAG=v0.3.0 Rscript scripts/release-data.R
+S2_TRACTS_RELEASE_TAG=v0.4.0 Rscript scripts/release-data.R
 ```
 
 Uploads replace same-named assets.

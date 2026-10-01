@@ -1,6 +1,6 @@
 [package]
 name = "s2-tracts"
-version = "0.3.0"
+version = "0.4.0"
 edition = "2024"
 description = "S2 lookup of annual TIGER/Line Census tract vintages"
 license = "MIT"
