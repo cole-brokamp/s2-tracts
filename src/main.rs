@@ -77,7 +77,7 @@ fn take_vintage(args: &mut Vec<String>) -> Result<u16, Box<dyn Error>> {
 
 fn print_help() {
     println!(
-        "s2-tracts {}\n\nUsage:\n  s2-tracts [--vintage YEAR] [S2_ID ...]\n  s2-tracts data install [--vintage YEAR]\n  s2-tracts data path [--vintage YEAR]\n\nDefault vintage: {DEFAULT_VINTAGE}. Annual vintages: {FIRST_VINTAGE}-{LAST_VINTAGE}.\nA lookup downloads its vintage on first use, then works offline.\nUse `data install` to prefetch a vintage.\nIf no IDs are given, read one unsigned level-30 S2 ID per stdin line.\nOutput is JSON Lines with string IDs and null for no strict tract match.",
+        "s2-tracts {}\n\nUsage:\n  s2-tracts [--vintage YEAR] [S2_TOKEN ...]\n  s2-tracts data install [--vintage YEAR]\n  s2-tracts data path [--vintage YEAR]\n\nDefault vintage: {DEFAULT_VINTAGE}. Annual vintages: {FIRST_VINTAGE}-{LAST_VINTAGE}.\nA lookup downloads its vintage on first use, then works offline.\nUse `data install` to prefetch a vintage.\nAccept level-30 S2 hexadecimal tokens, as returned by R as.character(s2_cell).\nIf no tokens are given, read one token per stdin line.\nOutput is JSON Lines with string tokens and null for no strict tract match.",
         env!("CARGO_PKG_VERSION")
     );
 }
@@ -94,27 +94,36 @@ fn data_path(vintage: u16) -> Result<PathBuf, Box<dyn Error>> {
         .join(format!("tracts_{vintage}.fgb")))
 }
 
+fn parse_tokens(tokens: &[String]) -> Result<Vec<u64>, Box<dyn Error>> {
+    let ids: Vec<u64> = tokens
+        .iter()
+        .enumerate()
+        .map(|(i, token)| {
+            if token.len() != 16 || !token.bytes().all(|b| b.is_ascii_hexdigit()) {
+                return Err(format!(
+                    "invalid level-30 S2 token at position {}: {token}; expected 16 hexadecimal characters",
+                    i + 1
+                ));
+            }
+            u64::from_str_radix(token, 16).map_err(|error| error.to_string())
+        })
+        .collect::<Result<_, _>>()?;
+    validate_ids(&ids)?;
+    Ok(ids)
+}
+
 fn lookup(mut ids: Vec<String>, vintage: u16) -> Result<(), Box<dyn Error>> {
     if ids.is_empty() {
         for (line, input) in io::stdin().lock().lines().enumerate() {
             let input = input?;
             let value = input.trim();
             if value.is_empty() {
-                return Err(format!("empty S2 ID on stdin line {}", line + 1).into());
+                return Err(format!("empty S2 token on stdin line {}", line + 1).into());
             }
             ids.push(value.to_owned());
         }
     }
-    let ids: Vec<u64> = ids
-        .iter()
-        .enumerate()
-        .map(|(i, value)| {
-            value
-                .parse::<u64>()
-                .map_err(|_| format!("invalid unsigned S2 ID at position {}: {value}", i + 1))
-        })
-        .collect::<Result<_, _>>()?;
-    validate_ids(&ids)?;
+    let ids = parse_tokens(&ids)?;
     if ids.is_empty() {
         return Ok(());
     }
@@ -127,9 +136,9 @@ fn lookup(mut ids: Vec<String>, vintage: u16) -> Result<(), Box<dyn Error>> {
     let mut out = io::BufWriter::new(io::stdout().lock());
     for (id, tract) in ids.iter().zip(results) {
         let line = serde_json::json!({
-            "s2_cell_id": id.to_string(),
-            "vintage": vintage,
-            "tract": tract,
+            "s2_cell": format!("{id:016x}"),
+            "census_tract_id_vintage": vintage,
+            "census_tract_id": tract,
         });
         serde_json::to_writer(&mut out, &line)?;
         writeln!(out)?;
@@ -292,6 +301,47 @@ mod tests {
         for year in FIRST_VINTAGE..=LAST_VINTAGE {
             let pinned = asset(year).unwrap();
             assert!(pinned.archive_bytes < pinned.raw_bytes);
+        }
+    }
+
+    #[test]
+    fn tokens_preserve_all_bits_and_input_order() {
+        let tokens = vec![
+            "89e7e7a6b5a7c03f".into(),
+            "0000000000000001".into(),
+            "BFFFFFFFFFFFFFFF".into(),
+            "89e7e7a6b5a7c03f".into(),
+        ];
+        let ids = parse_tokens(&tokens).unwrap();
+        assert_eq!(
+            ids,
+            [
+                0x89e7e7a6b5a7c03f,
+                1,
+                0xbfffffffffffffff,
+                0x89e7e7a6b5a7c03f
+            ]
+        );
+        for (token, id) in tokens.iter().zip(ids) {
+            assert_eq!(format!("{id:016x}"), token.to_lowercase());
+        }
+        assert!(parse_tokens(&[]).unwrap().is_empty());
+    }
+
+    #[test]
+    fn malformed_and_non_leaf_tokens_fail() {
+        for token in [
+            "",
+            "1",
+            "xyz",
+            "0x89e7e7a6b5a7c03f",
+            "9936721416563002943",
+            "89e7e7a6b5a7c03g",
+            "0000000000000000",
+            "1000000000000000",
+            "ffffffffffffffff",
+        ] {
+            assert!(parse_tokens(&[token.into()]).is_err(), "accepted {token}");
         }
     }
 
