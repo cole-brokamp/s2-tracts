@@ -179,12 +179,6 @@ fn run() -> Result<(), Box<dyn Error>> {
     if output.exists() || staging.exists() {
         return Err(fail("output or staging directory already exists"));
     }
-    let lock: Value =
-        serde_json::from_reader(File::open(format!("scripts/sources-{year}.lock.json"))?)?;
-    let records = lock.as_array().ok_or("source lock must be an array")?;
-    if records.len() != 56 {
-        return Err(fail("source lock must contain 56 archives"));
-    }
     fs::create_dir_all(&staging)?;
     let title = format!("census-tracts-{year}-r2");
     let name = format!("tracts_{year}");
@@ -200,32 +194,16 @@ fn run() -> Result<(), Box<dyn Error>> {
     let mut seen = HashSet::new();
     let mut source_info = Vec::new();
     let mut component_total = 0usize;
-    for (record, state) in records.iter().zip(STATES.split_whitespace()) {
-        if record.get("year").and_then(Value::as_u64) != Some(year as u64)
-            || text(record, "state")? != state
-        {
-            return Err(fail("source lock has missing or unordered state"));
-        }
-        let filename = text(record, "filename")?;
-        let expected = format!(
+    for state in STATES.split_whitespace() {
+        let filename = format!(
             "tl_{year}_{state}_tract{}.zip",
             if year == 2010 { "10" } else { "" }
         );
-        if filename != expected {
-            return Err(fail("source lock filename mismatch"));
-        }
-        let path = sources.join(filename).canonicalize()?;
-        if fs::metadata(&path)?.len()
-            != record["bytes"]
-                .as_u64()
-                .ok_or("invalid source byte count")?
-            || sha256(&path)? != text(record, "sha256")?
-        {
-            return Err(fail(format!(
-                "source differs from lock: {}",
-                path.display()
-            )));
-        }
+        let path = sources.join(&filename).canonicalize()?;
+        let url = format!(
+            "https://www2.census.gov/geo/tiger/TIGER{year}/TRACT/{}{filename}",
+            if year == 2010 { "2010/" } else { "" }
+        );
         let vsi = format!("/vsizip/{}", path.display());
         let layer = filename.trim_end_matches(".zip");
         let metadata: Value =
@@ -281,12 +259,16 @@ fn run() -> Result<(), Box<dyn Error>> {
             return Err(fail(format!("source feature count mismatch: {filename}")));
         }
         component_total += state_components;
-        let mut source = record.clone();
-        let object = source.as_object_mut().ok_or("invalid source record")?;
-        object.insert("crs".into(), json!(crs));
-        object.insert("tracts".into(), json!(state_tracts));
-        object.insert("components".into(), json!(state_components));
-        source_info.push(source);
+        source_info.push(json!({
+            "year": year,
+            "state": state,
+            "url": url,
+            "filename": filename,
+            "bytes": fs::metadata(&path)?.len(),
+            "crs": crs,
+            "tracts": state_tracts,
+            "components": state_components
+        }));
         eprintln!("{year} {state}: {state_tracts} tracts, {state_components} components");
     }
     let file = format!("{name}.fgb");

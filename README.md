@@ -11,7 +11,7 @@ curl -fsSL https://raw.githubusercontent.com/cole-brokamp/s2-tracts/main/install
 ```
 
 The version argument pins the binary and its matching tract-data release; replace `v0.3.0` with another published version to install it.
-The installer verifies the binary, downloads and verifies the 2020 tract data, and places the CLI at `~/.local/bin/s2-tracts`.
+The installer verifies the binary, downloads and verifies *2020* tract data, and places the CLI at `~/.local/bin/s2-tracts`.
 Set `S2_TRACTS_BIN_DIR` to use a different binary directory.
 
 ## Look up tracts
@@ -22,7 +22,6 @@ s2-tracts --vintage 2019 9936721416563002943
 ```
 
 The default vintage is **2020**.
-The installer prepares 2020 for offline lookup.
 The first lookup for another vintage downloads a Zstandard-compressed national file and expands it to an indexed FlatGeobuf; later lookups use the cached file offline.
 The download and installed file sizes vary by vintage and release.
 The command returns one JSON object per ID:

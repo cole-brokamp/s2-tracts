@@ -188,7 +188,7 @@ struct Asset {
 
 fn asset(vintage: u16) -> Result<Asset, Box<dyn Error>> {
     let manifest: serde_json::Value =
-        serde_json::from_str(include_str!("../scripts/assets.lock.json"))?;
+        serde_json::from_str(include_str!("../manifests/assets.lock.json"))?;
     let item = manifest
         .get(vintage.to_string())
         .ok_or(format!("no release asset for vintage {vintage}"))?;
