@@ -77,7 +77,7 @@ fn take_vintage(args: &mut Vec<String>) -> Result<u16, Box<dyn Error>> {
 
 fn print_help() {
     println!(
-        "s2-tracts {}\n\nUsage:\n  s2-tracts [--vintage YEAR] [S2_TOKEN ...]\n  s2-tracts data install [--vintage YEAR]\n  s2-tracts data path [--vintage YEAR]\n\nDefault vintage: {DEFAULT_VINTAGE}. Annual vintages: {FIRST_VINTAGE}-{LAST_VINTAGE}.\nA lookup downloads its vintage on first use, then works offline.\nUse `data install` to prefetch a vintage.\nAccept level-30 S2 hexadecimal tokens, as returned by R as.character(s2_cell).\nIf no tokens are given, read one token per stdin line.\nOutput is JSON Lines with string tokens and null for no strict tract match.",
+        "s2-tracts {}\n\nUsage:\n  s2-tracts [--vintage YEAR] [S2_TOKEN ...]\n  s2-tracts data install [--vintage YEAR]\n  s2-tracts data path [--vintage YEAR]\n\nDefault vintage: {DEFAULT_VINTAGE}. Annual vintages: {FIRST_VINTAGE}-{LAST_VINTAGE}.\nA lookup downloads its vintage on first use, then works offline.\nUse `data install` to prefetch a vintage.\nAccept level-30 S2 hexadecimal tokens, as returned by R as.character(s2_cell).\nIf no tokens are given, read one token per stdin line.\nMissing tokens (NA, null, or blank) return null. Invalid tokens warn and return null.\nOutput is JSON Lines with string tokens and null for no strict tract match.",
         env!("CARGO_PKG_VERSION")
     );
 }
@@ -94,49 +94,51 @@ fn data_path(vintage: u16) -> Result<PathBuf, Box<dyn Error>> {
         .join(format!("tracts_{vintage}.fgb")))
 }
 
-fn parse_tokens(tokens: &[String]) -> Result<Vec<u64>, Box<dyn Error>> {
-    let ids: Vec<u64> = tokens
-        .iter()
-        .enumerate()
-        .map(|(i, token)| {
-            if token.len() != 16 || !token.bytes().all(|b| b.is_ascii_hexdigit()) {
-                return Err(format!(
-                    "invalid level-30 S2 token at position {}: {token}; expected 16 hexadecimal characters",
-                    i + 1
-                ));
-            }
-            u64::from_str_radix(token, 16).map_err(|error| error.to_string())
-        })
-        .collect::<Result<_, _>>()?;
-    validate_ids(&ids)?;
-    Ok(ids)
+fn parse_tokens(tokens: &[String]) -> Vec<Option<u64>> {
+    tokens.iter().enumerate().map(|(index, token)| {
+        if token.is_empty() || token == "NA" || token == "null" {
+            return None;
+        }
+        let id = if token.len() == 16 && token.bytes().all(|b| b.is_ascii_hexdigit()) {
+            u64::from_str_radix(token, 16).ok().filter(|id| validate_ids(&[*id]).is_ok())
+        } else {
+            None
+        };
+        if id.is_none() {
+            eprintln!("s2-tracts: warning: invalid level-30 S2 token at position {}: {token}; returning null", index + 1);
+        }
+        id
+    }).collect()
 }
 
-fn lookup(mut ids: Vec<String>, vintage: u16) -> Result<(), Box<dyn Error>> {
-    if ids.is_empty() {
-        for (line, input) in io::stdin().lock().lines().enumerate() {
-            let input = input?;
-            let value = input.trim();
-            if value.is_empty() {
-                return Err(format!("empty S2 token on stdin line {}", line + 1).into());
-            }
-            ids.push(value.to_owned());
+fn lookup(mut tokens: Vec<String>, vintage: u16) -> Result<(), Box<dyn Error>> {
+    if tokens.is_empty() {
+        for input in io::stdin().lock().lines() {
+            tokens.push(input?.trim().to_owned());
         }
     }
-    let ids = parse_tokens(&ids)?;
-    if ids.is_empty() {
-        return Ok(());
-    }
-    let path = data_path(vintage)?;
-    if !path.is_file() {
-        install_data(&path, vintage)?;
-    }
-    let mut reader = TractLookup::open(path.parent().unwrap(), vintage)?;
-    let results = reader.lookup(&ids)?;
+    let ids = parse_tokens(&tokens);
+    let valid_ids: Vec<u64> = ids.iter().flatten().copied().collect();
+    let results = if valid_ids.is_empty() {
+        Vec::new()
+    } else {
+        let path = data_path(vintage)?;
+        if !path.is_file() {
+            install_data(&path, vintage)?;
+        }
+        let mut reader = TractLookup::open(path.parent().unwrap(), vintage)?;
+        reader.lookup(&valid_ids)?
+    };
+    let mut results = results.into_iter();
     let mut out = io::BufWriter::new(io::stdout().lock());
-    for (id, tract) in ids.iter().zip(results) {
+    for id in ids {
+        let tract = if id.is_some() {
+            results.next().expect("one result per valid cell")
+        } else {
+            None
+        };
         let line = serde_json::json!({
-            "s2_cell": format!("{id:016x}"),
+            "s2_cell": id.map(|id| format!("{id:016x}")),
             "census_tract_id_vintage": vintage,
             "census_tract_id": tract,
         });
@@ -312,26 +314,28 @@ mod tests {
             "BFFFFFFFFFFFFFFF".into(),
             "89e7e7a6b5a7c03f".into(),
         ];
-        let ids = parse_tokens(&tokens).unwrap();
+        let ids = parse_tokens(&tokens);
         assert_eq!(
             ids,
             [
-                0x89e7e7a6b5a7c03f,
-                1,
-                0xbfffffffffffffff,
-                0x89e7e7a6b5a7c03f
+                Some(0x89e7e7a6b5a7c03f),
+                Some(1),
+                Some(0xbfffffffffffffff),
+                Some(0x89e7e7a6b5a7c03f)
             ]
         );
         for (token, id) in tokens.iter().zip(ids) {
-            assert_eq!(format!("{id:016x}"), token.to_lowercase());
+            assert_eq!(format!("{:016x}", id.unwrap()), token.to_lowercase());
         }
-        assert!(parse_tokens(&[]).unwrap().is_empty());
+        assert!(parse_tokens(&[]).is_empty());
     }
 
     #[test]
-    fn malformed_and_non_leaf_tokens_fail() {
+    fn missing_malformed_and_non_leaf_tokens_return_null() {
         for token in [
             "",
+            "NA",
+            "null",
             "1",
             "xyz",
             "0x89e7e7a6b5a7c03f",
@@ -341,7 +345,7 @@ mod tests {
             "1000000000000000",
             "ffffffffffffffff",
         ] {
-            assert!(parse_tokens(&[token.into()]).is_err(), "accepted {token}");
+            assert_eq!(parse_tokens(&[token.into()]), [None], "accepted {token}");
         }
     }
 

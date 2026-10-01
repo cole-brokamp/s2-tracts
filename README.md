@@ -84,7 +84,7 @@ From R, pass an `s2_cell` vector as character tokens and read the JSON Lines out
 
 ```r
 cells <- s2::as_s2_cell(s2::s2_lnglat(
-  c(-84.5, -84.4), c(39.1, 39.2)
+  c(-84.5, NA, -84.4), c(39.1, NA, 39.2)
 ))
 
 lines <- system2(
@@ -94,3 +94,7 @@ lines <- system2(
 )
 tracts <- jsonlite::stream_in(textConnection(lines), verbose = FALSE)
 ```
+
+Missing cells (`NA`, `null`, or a blank input line) return JSON `null` for both `s2_cell` and `census_tract_id`; `jsonlite` reads these as R `NA`. Invalid or non-level-30 tokens also return a null row and emit a warning on standard error. Every input keeps its position in the output.
+
+This missing-value behavior requires a build from the current checkout; the published `v0.4.0` binary rejects missing or invalid tokens.
