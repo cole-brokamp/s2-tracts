@@ -96,5 +96,3 @@ tracts <- jsonlite::stream_in(textConnection(lines), verbose = FALSE)
 ```
 
 Missing cells (`NA`, `null`, or a blank input line) return JSON `null` for both `s2_cell` and `census_tract_id`; `jsonlite` reads these as R `NA`. Invalid or non-level-30 tokens also return a null row and emit a warning on standard error. Every input keeps its position in the output.
-
-This missing-value behavior requires a build from the current checkout; the published `v0.4.0` binary rejects missing or invalid tokens.
