@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-repository='cole-brokamp/s2-tracts'
+repository='geomarker-io/s2-tracts'
 if [ "$#" -ne 1 ] || ! printf '%s\n' "$1" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
   echo 'usage: sh install.sh vMAJOR.MINOR.PATCH' >&2
   exit 1

@@ -53,7 +53,7 @@ release_data <- function(year, tag) {
     paste0(archive, ".sha256"),
     provenance,
     "--repo",
-    "cole-brokamp/s2-tracts",
+    "geomarker-io/s2-tracts",
     "--clobber"
   )
   message("Uploading ", year, " data to ", tag)

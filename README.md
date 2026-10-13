@@ -8,7 +8,7 @@ Each S2 cell is linked to the census tract whose polygon strictly contains the c
 On macOS or Linux:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/cole-brokamp/s2-tracts/main/install.sh | sh -s -- v0.4.0
+curl -fsSL https://raw.githubusercontent.com/geomarker-io/s2-tracts/main/install.sh | sh -s -- v0.4.0
 ```
 
 The version argument pins the binary and its matching tract-data release; replace `v0.4.0` with another published version to install it.

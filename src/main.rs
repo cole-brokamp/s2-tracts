@@ -152,7 +152,7 @@ fn release_base() -> String {
     if let Ok(url) = env::var("S2_TRACTS_RELEASE_BASE_URL") {
         return url.trim_end_matches('/').to_owned();
     }
-    let repository = "cole-brokamp/s2-tracts";
+    let repository = "geomarker-io/s2-tracts";
     format!(
         "https://github.com/{repository}/releases/download/v{}",
         env!("CARGO_PKG_VERSION")
